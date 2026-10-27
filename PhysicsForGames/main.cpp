@@ -1,4 +1,7 @@
+#include <memory>
+
 #include "DemoWorld.h"
+
 
 #include <raylib.h>
 #include <raymath.h>
@@ -9,7 +12,7 @@
 //------------------------------------------------------------------------------------
 int main(void)
 {
-	World* Game = new DemoWorld();
+	auto Game = std::make_unique<DemoWorld>();
 
 
 	Game->Init();
@@ -29,7 +32,6 @@ int main(void)
 
 	Game->Exit();
 
-	delete Game;
 
     return 0;
 }

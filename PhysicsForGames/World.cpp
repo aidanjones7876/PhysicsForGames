@@ -2,6 +2,8 @@
 
 #include "raylib.h"
 
+#include "PhysObject.h"
+
 void World::Init()
 {
 	const int screenWidth = 800;
@@ -28,6 +30,11 @@ void World::TickFixed()
 {
 	AccumulatedFixedTime -= TargetFixedStep;
 
+	for(auto Pobj : PhysObjects)
+	{
+		Pobj->TickPhys(TargetFixedStep);
+	}
+
 	OnTickFixed();
 }
 
@@ -38,6 +45,11 @@ void World::Draw()
 	ClearBackground(RAYWHITE);
 
 	DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+
+	for (auto const PObj : PhysObjects)
+	{
+		PObj->Draw();
+	}
 
 	OnDraw();
 
@@ -56,3 +68,9 @@ bool World::ShouldClose() const
 	return WindowShouldClose();
 }
 
+std::weak_ptr<PhysObject> World::SpawnPhysObject()
+{
+	PhysObjects.emplace_back(std::make_shared<PhysObject>());
+
+	return PhysObjects[PhysObjects.size() - 1];
+}

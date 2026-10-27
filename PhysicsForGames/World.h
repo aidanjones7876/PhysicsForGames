@@ -1,4 +1,10 @@
 #pragma once
+#include <vector> //for dynamic arrays
+#include <memory> //for smart pointers
+
+
+
+class PhysObject;
 
 class World
 {
@@ -7,6 +13,8 @@ public:
 
 private:
 	float AccumulatedFixedTime = 0.0f;
+
+	std::vector<std::shared_ptr<class PhysObject>> PhysObjects;
 
 public:
 	void Init();
@@ -27,6 +35,8 @@ public:
 	{
 		return AccumulatedFixedTime >= TargetFixedStep;
 	}
+
+	std::weak_ptr<PhysObject> SpawnPhysObject();
 
 
 protected:

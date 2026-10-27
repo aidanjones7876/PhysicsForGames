@@ -4,8 +4,12 @@
 
 class DemoWorld : public World
 {
+
+private:
+	std::weak_ptr<PhysObject> TestPhysObject;
  protected:
 	
+	virtual void OnInit() override;
 	virtual void OnTick() override;
 	virtual void OnTickFixed() override;
 	
