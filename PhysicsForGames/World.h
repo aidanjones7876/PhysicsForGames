@@ -10,6 +10,7 @@ class World
 {
 public:
 	float TargetFixedStep = 1.0f / 30.0f;
+	float GravityY = 9.81f;
 
 private:
 	float AccumulatedFixedTime = 0.0f;
@@ -37,6 +38,8 @@ public:
 	}
 
 	std::weak_ptr<PhysObject> SpawnPhysObject();
+
+	const std::vector<std::shared_ptr<PhysObject>>& GetPhysObjects() { return PhysObjects; }
 
 
 protected:

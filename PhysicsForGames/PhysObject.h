@@ -3,8 +3,12 @@
 #include <raylib.h>
 #include <raymath.h>
 
+#include "Shapes.h"
+
 //A -glm
 //B -Raylib
+
+
 
 class PhysObject
 {
@@ -14,8 +18,11 @@ private:
 
 	float Mass = 1.0f;
 
+	Shape Collider;
+
 	Vector2 PendingForces = {};
 	Vector2 PendingImpulses = {};
+
 
 public:
 	void TickPhys(float Delta);
@@ -31,9 +38,19 @@ public:
 	void SetMass(float NewMass);
 	float GetMass() const { return Mass; };
 
+	void SetCircle(float Radius);
+	const Shape& GetShape() const;
+
 	void AddForce(const Vector2& Force);
 	void AddAccel(const Vector2& Accel);
 	void AddImpulse(const Vector2& Impulse);
 	void AddVelocityChange(const Vector2& VelChange);
 
+	
 };
+
+float ResolveCollision(const Vector2& VelA, float MassA,
+					   const Vector2& VelB, float MassB, float Elasticity, const Vector2& Normal);
+
+void ResolvePhysBodies(PhysObject& Lhs, PhysObject& Rhs, float Elasticity, const Vector2& Normal, float Pen);
+

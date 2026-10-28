@@ -127,13 +127,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="DemoWorld.h" />
+    <ClInclude Include="EnumUtils.h" />
     <ClInclude Include="PhysObject.h" />
+    <ClInclude Include="Shapes.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DemoWorld.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PhysObject.cpp" />
+    <ClCompile Include="Shapes.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

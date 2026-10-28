@@ -4,7 +4,8 @@
 
 class DemoWorld : public World
 {
-
+public:
+	bool bUseScreenWrap = true;
 private:
 	std::weak_ptr<PhysObject> TestPhysObject;
  protected:
